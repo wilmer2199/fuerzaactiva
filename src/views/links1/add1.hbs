@@ -1,0 +1,90 @@
+<div class="background-register"> <div class="container  p-4">
+    <div class="row my-4">
+        <div class="  col-md-4 align-items-stretch mx-auto"> 
+            <div class="card shadow">
+                <div class="card-header bg-success text-white">
+                    <h3 class="card-title my-2 text-center">Registro de Solicitud</h4>
+                </div>
+                <div class="card-body">
+                    
+                    
+                    <p class="h5 text-center my-1 mr-4 mb-2 p-2 justify-content-center align-items-center"> !Haz tu solicitud¡ </p>
+                    <hr class="my-2">
+                    <form action="/links1/add1" method="post">
+                    <div class="form-group row" > 
+                        <div class= "col-md-12 mb-2">
+                        <strong>N° de Registro:</strong> 
+                        <input type="text"  class="form-control form-control-sm"   name="numero_registro" placeholder="Registro numero 1..." autofocus>
+                    </div>
+                    </div>
+                    <div class="form-group row" > 
+                        <div class= "col-md-12 mb-2">
+                        <strong >Nombres y Apellidos:</strong>
+                        <input type="text" class="form-control form-control-sm"   name="nombre_cliente" placeholder="Wilmer Antonio Perez Rojas" autofocus>
+                    </div>
+                    </div>
+                    <div class="form-group row" > 
+                        <div class= "col-md-12 mb-2">
+                        <strong>Servicio:</strong>
+                        <input type="text" class="form-control form-control-sm"   name="tipo_servicio" placeholder="Vigilancia Privada" autofocus>
+                    </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-12 mb-2">
+                        <strong class="my-1 mr-2 mb-0"> Fecha de Solicitud:</strong>
+                        <input type="date" class="form-control form-control-sm" name="fecha_solicitud"  placeholder="Fecha Solicitud ">
+                    </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-12 mb-2">
+                        <strong class="my-1 mr-4 mb-0"> Fecha Requerida</strong>
+                        <input type="date" class="form-control form-control-sm" name="fecha_requerida"  placeholder="Fecha Requerida ">
+                    </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-12 mb-2">
+                        <strong>Oficiales Requeridos (Cantidad/Sexo):</strong>
+                        <input type="int" class="form-control form-control-sm " name="numero_oficiales_requeridos" placeholder="20 oficiales mujer, 10 hombre....">
+                    </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-12 mb-2">
+                        <strong>Oficiales Requeridos (Edad):</strong>
+                        <input type="int" class="form-control form-control-sm " name="edad_oficiales_requeridos" placeholder="Entre 20 y 40 años">
+                    </div>
+                    </div>
+                        <div class="form-group row">
+                        <div class="col-md-12 mb-2">
+                        <strong>Horas Requeridas:</strong>
+                        <input type="text" class="form-control form-control-sm " name="duracion_estimada_horas" placeholder="12horas / 24horas...">
+                    </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-12 mb-2">
+                        <strong>Dirección:</strong>
+                        <textarea  type= "text "name="direccion_servicio" rows= "2" class="form-control form-control-sm"  placeholder="Maturin. Zona-Industrial "></textarea>
+                    </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-12 mb-2">
+                        <strong>Detalles Adicionales:</strong>
+                        <input type="text" class="form-control form-control-sm" name="detalles_adicionales" placeholder="Oficiales con experencia, etc..">
+                    </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-12 mb-2">
+                        <strong>Descripción:</strong>
+                        <textarea  type= "text "name="descripcion" rows= "2" class="form-control form-control-sm"  placeholder="!Estoy interesa en el servicio¡, etc.. "></textarea>
+                    </div>
+                    </div> 
+                    <div class="form-group row" >
+                        <button class=" btn btn-outline-success btn-block col-md-12 ">
+                            Guardar
+                        </button>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

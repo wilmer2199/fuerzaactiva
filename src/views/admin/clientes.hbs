@@ -1,0 +1,59 @@
+<div class="container p-4">
+    <div class="row">
+        <div class="col-md-12 mx-auto">
+            <h3>Gestión de Clientes</h3>
+            <hr>
+            {{#if clientes.length}}
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Registro (Numero)</th> 
+                            <th>Tipo (Cliente)</th>
+                            <th>Contacto (Nombre)</th>
+                            <th>Empresa (Nombre)</th>
+                            <th>Cédula/RIF</th>
+                            <th>Email</th>
+                            <th>Teléfono</th>
+                            <th>Dirección</th>
+                            <th>Nos conocio en:</th>
+                            <th>Descripción</th>
+                            <th>Usuario Creador</th>
+                            <th>Fecha Registro </th>
+                            <th>Acciones</th> </tr>
+                    </thead>
+                    <tbody>
+                        {{#each clientes}}
+                        <tr>
+                            <td>{{numero_registro}}</td>
+                            <td>{{tipo_cliente}}</td>
+                            <td>{{nombre_contacto}}</td>
+                            <td>{{nombre_empresa}}</td>
+                            <td>{{cedula_rif}}</td>
+                            <td>{{email_contacto}}</td>
+                            <td>{{telefono_contacto}}</td>
+                            <td>{{direccion_principal}}</td>
+                            <td>{{origen_cliente}}</td>
+                            <td>{{descripcion}}</td>
+                            <td>{{nombre_usuario}} ({{usuario_creador_nombre}})</td>
+                            <td>{{formatDate fecha_registro 'DD [de] MMMM [de] YYYY HH:mm'}} <p>Registrado: {{momentFromNow fecha_registro}}</p> </td>
+                            <td>
+                                <a href="/admin/clientes/delete/{{cliente_id}}" class="btn btn-outline-danger btn-sm"
+                                   onclick="return confirm('¿Estás seguro de que quieres eliminar este cliente?');">
+                                    Eliminar
+                                </a>
+                            </td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+            <a href="/admin" class="btn btn-outline-primary btn-block">Regresar</a>
+            {{else}}
+            <div class="alert alert-info" role="alert">
+                ¡ERROR! No se encontraron clientes, aunque se esperaban.
+            </div>
+            {{/if}}
+        </div>
+    </div>
+</div>

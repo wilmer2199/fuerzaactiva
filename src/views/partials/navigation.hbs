@@ -1,0 +1,89 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow">
+    <div class="container">
+        <a class="navbar-brand" href="/">
+            <img src="/img/fa6.png" alt="Logo Fuerza Activa" class="navbar-logo"> Fuerza Activa CA
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+
+                {{#if user}}
+                    {{!-- Si el usuario está autenticado --}}
+
+                    {{#ifEquals user.rol 'Admin'}}
+                        {{!-- Opciones para ADMINISTRADORES --}}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href='#' id="addDropdown" data-toggle="dropdown"
+                               aria-haspopup="true" aria-expanded="false">
+                                Ver
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="addDropdown">
+                                <a class="dropdown-item" href="/admin/clientes">Ver Clientes</a>
+                                <a class="dropdown-item" href="/admin/solicitudes">Ver Solicitudes</a>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/admin" class="nav-link">Panel</a> </li>
+                        <li class="nav-item">
+                            <a href="" class="nav-link"></a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="" class="nav-link"></a>
+                        </li>
+                       
+                    {{/ifEquals}}
+
+                    {{#ifEquals user.rol 'Cliente'}}
+                        {{!-- Opciones para CLIENTES --}}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href='#' id="addDropdown" data-toggle="dropdown"
+                               aria-haspopup="true" aria-expanded="false">
+                                Agregar
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="addDropdown">
+                                <a class="dropdown-item" href="/links1/add1">Nueva Solicitud</a>
+                                <a class="dropdown-item" href="/links/add">Nuevo Registro</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="viewDropdown" data-toggle="dropdown"
+                               aria-haspopup="true" aria-expanded="false">
+                                Ver
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="viewDropdown">
+                                <a class="dropdown-item" href="/links">Mis Datos</a>
+                                <a class="dropdown-item" href="/links1">Mis Solicitudes</a>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a href="" class="nav-link"></a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="" class="nav-link"></a>
+                        </li>
+                    {{/ifEquals}}
+
+                    {{!-- Siempre mostrar Salir si hay usuario --}}
+                    <li class="nav-item">
+                        <a href="/logout" class="nav-link">Salir</a>
+                    </li>
+
+                {{else}}
+                    {{!-- Si el usuario NO está autenticado --}}
+                    <li class="nav-item">
+                        <a href="/acercade" class="nav-link">Sobre Nosotros</a>
+                        </li>
+                    <li class="nav-item">
+                        <a href="/signin" class="nav-link">Iniciar Sesión</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/signup" class="nav-link">Registrarse</a>
+                    </li>
+                {{/if}}
+            </ul>
+        </div>
+    </div>
+</nav>

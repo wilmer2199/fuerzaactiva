@@ -1,0 +1,160 @@
+<div class="background-signin">
+    <div class="container p-4">
+        <div class="row">
+            <div class="col-md-4 mx-auto">
+                <div class="card text-center shadow">
+                    <div class="card-header bg-success text-white">
+                        <h3>Registrarse</h3>
+                    </div>
+                    <div class="card-body">
+                        <form action="/signup" method="POST" id="signupForm">
+
+                            <div class="form-group">
+                                <div class="col-md-12 mb-2">
+                                    <input type="text" name="nombre_completo" placeholder="Nombre Completo" class="form-control" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-12 mb-2">
+                                    <input type="text" name="nombre_usuario" placeholder="Usuario" class="form-control" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-12 mb-2">
+                                    <input type="email" name="correo" placeholder="Correo Electrónico" class="form-control" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-12 mb-2">
+                                    <div class="input-group">
+                                        <input type="password" name="contrasena" id="contrasena" placeholder="Contraseña" class="form-control" required>
+                                        <button class="btn btn-outline-secondary" type="button" id="togglePassword">
+                                            <i class="bi bi-eye-fill"></i>
+                                        </button>
+                                    </div>
+                                    <small id="passwordHelp" class="form-text text-muted">
+                                        Debe tener entre 8 y 15 caracteres, y al menos un carácter especial (ej. !, @, #, $, %, ^, &, *).
+                                    </small>
+                                    <div class="invalid-feedback" id="passwordFeedback">
+                                        La contraseña no cumple con los requisitos.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-12 mb-2">
+                                    <div class="input-group">
+                                        <input type="password" name="confirm_contrasena" id="confirm_contrasena" placeholder="Confirmar Contraseña" class="form-control" required>
+                                        <button class="btn btn-outline-secondary" type="button" id="toggleConfirmPassword">
+                                            <i class="bi bi-eye-fill"></i>
+                                        </button>
+                                    </div>
+                                    <div class="invalid-feedback" id="confirmPasswordFeedback">
+                                        Las contraseñas no coinciden.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-12 mb-2">
+                                    <button class="btn btn-outline-success btn-block" type="submit">
+                                        Registrarse
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const passwordInput = document.getElementById('contrasena');
+        const confirmPasswordInput = document.getElementById('confirm_contrasena');
+        const passwordFeedback = document.getElementById('passwordFeedback');
+        const confirmPasswordFeedback = document.getElementById('confirmPasswordFeedback');
+        const signupForm = document.getElementById('signupForm');
+
+        const togglePassword = document.getElementById('togglePassword');
+        const toggleConfirmPassword = document.getElementById('toggleConfirmPassword');
+
+        // Función para alternar visibilidad de contraseña
+        function togglePasswordVisibility(inputElement, toggleButton) {
+            const type = inputElement.getAttribute('type') === 'password' ? 'text' : 'password';
+            inputElement.setAttribute('type', type);
+
+            // Cambia el icono (si usas Bootstrap Icons)
+            const icon = toggleButton.querySelector('i');
+            if (icon) {
+                icon.classList.toggle('bi-eye-fill');
+                icon.classList.toggle('bi-eye-slash-fill');
+            }
+            // Si no usas iconos, podrías cambiar el texto del botón
+            // toggleButton.textContent = type === 'password' ? 'Mostrar' : 'Ocultar';
+        }
+
+        // Event listeners para los botones de ojito
+        togglePassword.addEventListener('click', function() {
+            togglePasswordVisibility(passwordInput, this);
+        });
+
+        toggleConfirmPassword.addEventListener('click', function() {
+            togglePasswordVisibility(confirmPasswordInput, this);
+        });
+
+        // --- Lógica de Validación (sin cambios) ---
+        function validatePassword() {
+            const password = passwordInput.value;
+            const passwordRegex = /^(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]).{8,15}$/;
+
+            if (passwordRegex.test(password)) {
+                passwordInput.classList.remove('is-invalid');
+                passwordInput.classList.add('is-valid');
+                passwordFeedback.style.display = 'none';
+                return true;
+            } else {
+                passwordInput.classList.remove('is-valid');
+                passwordInput.classList.add('is-invalid');
+                passwordFeedback.style.display = 'block';
+                return false;
+            }
+        }
+
+        function validateConfirmPassword() {
+            const password = passwordInput.value;
+            const confirmPassword = confirmPasswordInput.value;
+
+            if (password === confirmPassword && password !== '') {
+                confirmPasswordInput.classList.remove('is-invalid');
+                confirmPasswordInput.classList.add('is-valid');
+                confirmPasswordFeedback.style.display = 'none';
+                return true;
+            } else {
+                confirmPasswordInput.classList.remove('is-valid');
+                confirmPasswordInput.classList.add('is-invalid');
+                confirmPasswordFeedback.style.display = 'block';
+                return false;
+            }
+        }
+
+        passwordInput.addEventListener('input', () => {
+            validatePassword();
+            if (confirmPasswordInput.value !== '') {
+                validateConfirmPassword();
+            }
+        });
+        confirmPasswordInput.addEventListener('input', validateConfirmPassword);
+
+        signupForm.addEventListener('submit', function(event) {
+            const isPasswordValid = validatePassword();
+            const isConfirmPasswordValid = validateConfirmPassword();
+
+            if (!isPasswordValid || !isConfirmPasswordValid) {
+                event.preventDefault();
+            }
+        });
+    });
+</script>

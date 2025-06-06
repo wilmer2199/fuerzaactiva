@@ -1,0 +1,59 @@
+<div class="container p-4">
+    <div class="row">
+        <div class="col-md-12 mx-auto">
+            <h3>Gestión de Solicitudes de Servicio</h3>
+            <hr>
+            {{#if solicitudes.length}}
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover">
+                    <thead class="thead-dark">
+                        <tr>
+                           <th>Registro (Numero)</th>
+                            <th>Nombre (Cliente)</th>
+                            <th>Tipo Servicio </th>
+                            <th>Fecha Solicitud </th>
+                            <th>Fecha Requerida </th>
+                            <th>Oficiales Requeridos (Cantidad/sexo)</th>
+                            <th>Oficiales Requeridos (Edad)</th>
+                            <th>Duración (Horas)</th>
+                            <th>Dirección Servicio</th>
+                            <th>Detalles Adicionales </th>
+                            <th>Descripción</th>
+                           <th>Usuario Solicitante</th>
+                            <th>Acciones</th> </tr>
+                    </thead>
+                    <tbody>
+                        {{#each solicitudes}}
+                        <tr>
+                            <td>{{numero_registro}}</td>
+                            <td>{{nombre_cliente}}</td>
+                            <td>{{tipo_servicio}}</td>
+                            <td>{{formatDate fecha_registro 'DD [de] MMMM [de] YYYY HH:mm'}} <p>Registrado: {{momentFromNow fecha_solicitud}}</p></td>
+                            <td>{{formatDate fecha_requerida 'DD [de] MMMM [de] YYYY HH:mm'}}</td>
+                            <td>{{numero_oficiales_requeridos}}</td>
+                            <td>{{edad_oficiales_requeridos}}</td>
+                            <td>{{duracion_estimada_horas}}</td>
+                            <td>{{direccion_servicio}}</td>
+                            <td>{{detalles_adicionales}}</td>
+                            <td>{{descripcion}}</td>
+                           <td>{{nombre_usuario}} ({{usuario_solicitante_nombre}})</td>
+                            <td>
+                                <a href="/admin/solicitudes/delete/{{servicio_id}}" class="btn btn-outline-danger btn-sm"
+                                   onclick="return confirm('¿Estás seguro de que quieres eliminar esta solicitud?');">
+                                    Eliminar
+                                </a>
+                            </td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+            <a href="/admin" class="btn btn-outline-success btn-block">Regresar</a>
+            {{else}}
+            <div class="alert alert-info" role="alert">
+                ¡ERROR! No se encontraron solicitudes, aunque se esperaban.
+            </div>
+            {{/if}}
+        </div>
+    </div>
+</div>

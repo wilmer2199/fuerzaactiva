@@ -1,0 +1,60 @@
+<div class="background-register"> <div class="container p-4">
+    <div class="row mt-4">
+        {{#each servicios}}
+           <div class="col-md-4 align-items-stretch">
+                <div class="card shadow ">
+                    <div class="card-header bg-success text-white">
+                    <h3 class="card-title my-2 text-center">Solicitud Registrada</h4>
+                </div>
+                    <div class="card-body text-left"> 
+                        <p class="h5 text-center my-0 mr-3 mb-2 p-2 justify-content-center align-items-center"> !Chequea tu solicitud y contactanos¡</p> 
+                        <hr class="my-2">  
+                        <p class="m-2 text-left"><strong>N° de Registro:</strong>  {{numero_registro}} </p>
+                        <hr class="my-2">
+                        <p class="m-2"> <strong>Nombres y Apellidos:</strong>   {{nombre_cliente}} </p>
+                        <hr class="my-2">
+                        <p class="m-2"> <strong>Servicio:</strong>   {{tipo_servicio}} </p> 
+                        <hr class="my-2">
+                        <p class="m-2"> <strong>Fecha de Solicitud:</strong>   {{formatDate fecha_registro 'DD [de] MMMM [de] YYYY HH:mm' }}</p>
+                        <hr class="my-2">
+                        <p class="m-2"> <strong>Fecha Requerida:</strong>   {{formatDate fecha_requerida 'DD [de] MMMM [de] YYYY HH:mm'}}</p>
+                        <hr class="my-2">
+                        <p class="m-2"> <strong>Oficiales Requeridos (Cantidad/Sexo):</strong>  {{numero_oficiales_requeridos}} </p>
+                        <hr class="my-2">
+                        <p class="m-2"><strong>Oficiales Requeridos (Edad):</strong>   {{edad_oficiales_requeridos}} </p>
+                        <hr class="my-2">
+                        <p class="m-2"> <strong>Horas Requeridas:</strong> {{duracion_estimada_horas}} </p>
+                        <hr class="my-2">
+                        <p class="m-2"> <strong>Dirección:</strong>  {{direccion_servicio}} </p>
+                        <hr class="my-2">
+                        <p class="m-2"> <strong>Detalles Adicionales:</strong> {{detalles_adicionales}} </p>
+                        <hr class="my-2">
+                        <p class="m-2"> <strong>Descripción:</strong>  {{descripcion}} </p>
+                        <hr class="my-2">
+                        <p class="m-2"> <strong>Registrado:</strong> {{momentFromNow fecha_solicitud}}</p>
+                        <hr class="my-2">
+                    
+                        <div class="text-center">
+                            <a href=" links1/delete1/id/{{id}}" class="btn btn-outline-danger btn-block ">Eliminar</a>
+                            <a href=" links1/edit1/id/{{id}}" class="btn btn-outline-secondary btn-block">Editar</a>
+                                <a href="/contactanos" class="btn btn-outline-primary btn-block">Contactanos</a>
+                        </div>   
+                    </div>
+                </div>
+           </div>
+        {{else }} <!--este else es para que muestre un mensaje de que no hay mas registros-->
+           <div class="container p-4">
+                <div class="row"> 
+                    <div class="col-md-4 mas-auto ">
+                        <div class="card  text-center ">
+                            <div class="card-body">
+                             <p class= "my-1 mr-4 mb-2 p-2 justify-content-center align-items-center">No hay Solicitudes</p>
+                             <a href="/links1/add1">Realiza una!</a>
+                             </div>
+                        </div>
+                     </div>
+                </div>
+            </div>
+        {{/each }}
+    </div>
+</div>
