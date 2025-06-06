@@ -50,7 +50,7 @@ app.use (session ({
         port: process.env.MYSQL_PORT || 3306
     }),  
     cookie: {
-        secure:true, // ¡CRUCIAL para Render (HTTPS)!
+        secure:false, // ¡CRUCIAL para Render (HTTPS)!
         httpOnly: true, // Buena práctica de seguridad
         sameSite: 'Lax'
         // sameSite: 'lax' // Puedes comentar esto también para descartar
