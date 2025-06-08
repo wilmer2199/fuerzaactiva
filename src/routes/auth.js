@@ -28,7 +28,7 @@ router.post('/signin', isNotLoggedIn, (req, res, next) => {
     passport.authenticate('local.signin', (err, user, info) => {
         if (err) { return next(err); }
 
-        // 'info' contiene el mensaje que pasaste desde la estrategia
+        // 'info' contiene el mensaje que se paso desde la estrategia
         const flashMessage = info ? info.message : 'Mensaje desconocido'; // Evita undefined
 
         if (!user) { // Fallo de autenticación

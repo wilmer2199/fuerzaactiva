@@ -1,7 +1,7 @@
-const mysql = require ('mysql2'); // ¡Correcto, estamos usando mysql2!
+const mysql = require ('mysql2'); 
 const {promisify} = require ('util');
 
-const {database} = require('./keys') // Esto importa tu objeto { host: '...', user: '...', etc. }
+const {database} = require('./keys') // Esto importa los objeto { host: '...', user: '...', etc. }
 
 
 
@@ -16,7 +16,7 @@ pool.getConnection((err, connection) => {
         } else if (err.code === 'ECONNREFUSED'){
             console.error ('DATABASE CONNECTION WAS REFUSED');
         } else if (err.code === 'ER_NOT_SUPPORTED_AUTH_MODE'){
-            // Este error ya no debería aparecer si mysql2 y el usuario están bien.
+            
             console.error('AUTHENTICATION ERROR (mysql2): Client does not support authentication protocol.', err.sqlMessage);
         }
         else {

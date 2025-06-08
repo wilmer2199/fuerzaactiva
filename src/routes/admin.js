@@ -5,16 +5,10 @@ const handlebars = require ('../lib/handlebars');
 const pool = require('../database'); 
 const { isLoggedIn, isAdmin } = require('../lib/auth'); // Importar los middlewares
 
-// Ruta para el panel General del Administrador (opcional)
-
-
-
-
-
 // --- VISTA 1: LISTADO DE TODOS LOS CLIENTES ---
-router.get('/clientes', isLoggedIn, isAdmin, async (req, res) => { // Asegúrate de que isAdmin esté de vuelta
+router.get('/clientes', isLoggedIn, isAdmin, async (req, res) => { // Aseguararse de que isAdmin esté de vuelta
     try {
-        console.log("-----> INICIO DE CONSULTA DE CLIENTES <-----"); // ESTE DEBE APARECER
+        console.log("-----> INICIO DE CONSULTA DE CLIENTES <-----"); 
         const clientes = await pool.query(`
             SELECT
                 c.id AS cliente_id,
@@ -42,13 +36,13 @@ router.get('/clientes', isLoggedIn, isAdmin, async (req, res) => { // Asegúrate
         console.log("-----> FIN DE CONSULTA DE CLIENTES <-----"); // ESTE DEBE APARECER
         console.log("Tipo de 'clientes' recibido:", typeof clientes);
         console.log("¿'clientes' es un arreglo?", Array.isArray(clientes));
-        console.log("Contenido de 'clientes':", clientes); // ¡ESTO ES LO MÁS IMPORTANTE!
+        console.log("Contenido de 'clientes':", clientes); // ¡ESTE ES EL MÁS IMPORTANTE!
         console.log("Número de clientes:", clientes.length);
 
 
         res.render('admin/clientes', { clientes });
     } catch (err) {
-        console.error("-----> ERROR EN RUTA /admin/clientes <-----:", err); // SI HAY UN ERROR AQUÍ, LO VEREMOS
+        console.error("-----> ERROR EN RUTA /admin/clientes <-----:", err); // SI HAY UN ERROR AQUÍ, SE VERA
         req.flash('message', 'Error al cargar la lista de clientes.');
         req.session.save(() => {
             res.redirect('/admin');
@@ -92,7 +86,6 @@ router.get('/clientes/delete/:id', isLoggedIn, isAdmin, async (req, res) => {
 
 
 // vista numero 2 listado de las solicitudes de los clientes 
-
 router.get('/solicitudes', isLoggedIn, isAdmin, async (req, res) => {
     try {
         console.log("-----> INICIO DE CONSULTA DE SOLICITUDES <-----");

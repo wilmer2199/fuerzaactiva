@@ -17,12 +17,11 @@ passport.use('local.signin', new LocalStrategy({
         const user = rows[0];
         const validPassword = await helpers.matchPassword(contrasena, user.contrasena);
         if (validPassword) {
-            // ¡NO USAR req.flash AQUÍ!
-            // Usa el objeto 'info' para pasar el mensaje
+            
             done(null, user, { message: 'Bienvenido ' + user.nombre_usuario });
         } else {
-            // ¡NO USAR req.flash AQUÍ!
-            done(null, false,{ message: 'Contraseña Incorrecta' });
+            
+            done(null, false, { message: 'Contraseña Incorrecta' });
         }
     } else {
         return done(null, false, { message: 'Nombre de usuario no existe' });
@@ -65,7 +64,7 @@ passport.use ('local.signup', new LocalStrategy ({
         }
 
         // ¡NUEVO! Verificar si el correo ya existe en la base de datos
-        // Esto es crucial si quieres que cada correo sea único
+        // Esto es crucial si se quiere que cada correo sea único
         const existingEmail = await pool.query('SELECT * FROM inicio WHERE correo = ?', [correo]);
         if (existingEmail.length > 0) {
             return done(null, false, req.flash('message', 'Este correo electrónico ya está registrado.'));
@@ -77,8 +76,8 @@ passport.use ('local.signup', new LocalStrategy ({
             nombre_usuario,
             contrasena: hashedPassword, // Guardamos la contraseña hasheada
             nombre_completo,
-            correo, // ¡4. Añade el correo al objeto newUser para insertarlo en la DB!
-            rol: 'Cliente' // Asegúrate de que esta columna exista en tu tabla `inicio`
+            correo, // ¡4. se Añade el correo al objeto newUser para insertarlo en la DB!
+            rol: 'Cliente' 
         };
 
         const result = await pool.query('INSERT INTO inicio SET ?', [newUser]);

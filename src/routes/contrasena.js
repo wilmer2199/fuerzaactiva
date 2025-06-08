@@ -11,8 +11,8 @@ const transporter = nodemailer.createTransport({
     port: 465, // Puerto SMTP
     secure: true, // true para 465, false para otros puertos como 587
     auth: {
-        user: 'willperez2199@gmail.com', // Tu dirección de correo
-        pass: 'fkrrwfadlauvrbml' // Tu contraseña o "Contraseña de aplicación" si usas 2FA
+        user: 'willperez2199@gmail.com', //  dirección de correo
+        pass: 'fkrrwfadlauvrbml' //  contraseña o "Contraseña de aplicación en gmail" si se usa 2FA
     },
     tls: {
         ciphers: 'SSLv3' // Esto a veces es necesario para algunos servidores SMTP antiguos o específicos
@@ -20,7 +20,7 @@ const transporter = nodemailer.createTransport({
 });
 
 router.get('/forgotPassword', isNotLoggedIn, (req, res) => {
-    res.render('auth/forgotPassword'); // Necesitas crear esta vista
+    res.render('auth/forgotPassword'); 
 });
 
 // 2. Procesar solicitud de recuperación (generar token y enviar email)
@@ -92,7 +92,7 @@ router.get('/resetPassword/:token', isNotLoggedIn, async (req, res) => {
             return res.redirect('/forgotPassword');
         }
 
-        res.render('auth/resetPassword', { token }); // se Necesita crear esta vista
+        res.render('auth/resetPassword', { token }); 
     } catch (error) {
         console.error('Error al mostrar formulario de restablecimiento:', error);
         req.flash('message', 'Ocurrió un error. Inténtalo de nuevo.');
@@ -120,7 +120,7 @@ router.post('/resetPassword/:token', isNotLoggedIn, async (req, res) => {
 
         const userFound = user[0];
         console.log('ID del usuario a actualizar:', userFound.id);
-        const hashedPassword = await bcrypt.hash(password, 10); // 10 es el costo del salt, puedes ajustar
+        const hashedPassword = await bcrypt.hash(password, 10); // 10 es el costo del salt, es lo ideal pero se puede ajustar
         console.log('Nuevo hash de contraseña generado:', hashedPassword);
 
         // Actualizar la contraseña y limpiar el token

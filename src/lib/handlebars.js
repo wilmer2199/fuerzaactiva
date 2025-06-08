@@ -3,7 +3,7 @@ const moment = require('moment/min/moment-with-locales');
 // Configura el idioma globalmente para todos los usos de moment()
 moment.locale('es'); 
 
-// Si aún usas timeago.js (aparte de moment.js's fromNow)
+//  timeago.js (aparte de moment.js's fromNow)
 const { format: formatTimeago } = require('timeago.js'); 
 
 const helpers = {
@@ -34,7 +34,7 @@ const helpers = {
         }
     },
 
-    // Helper para "hace X tiempo" usando moment.js (es mejor si no tienes otra razón para timeago.js)
+    // Helper para "hace X tiempo" usando moment.js (es mejor si no hay otra razón para timeago.js)
     momentFromNow: (timestamp) => {
         if (!timestamp) return '';
         // moment.locale('es'); // Ya no es necesario aquí si se configuró globalmente arriba
@@ -59,7 +59,7 @@ const helpers = {
             return '';
         }
         // moment.locale('es'); // Ya no es necesario aquí si se configuró globalmente arriba
-        return date.format('D [de] MMMM [de] YYYY'); // Asegúrate de que el comodín sea YYYY
+        return date.format('D [de] MMMM [de] YYYY'); // estar pendiente de que el comodín sea YYYY
     }
 };
 

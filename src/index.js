@@ -35,8 +35,6 @@ app.engine('.hbs', engine({
 
 app.set('view engine', '.hbs');
 // midelware
-
-
 // session de middleware funcion que se aejecuta cada que un usuario envie una peticion 
 app.use (session ({
     secret: 'fuerzaactiva',
@@ -50,10 +48,9 @@ app.use (session ({
         port: process.env.MYSQL_PORT || 3306
     }),  
     cookie: {
-        secure:false, // ¡CRUCIAL para Render (HTTPS)!
+        secure:false, // ¡CRUCIAL para Render (HTTPS)! para produccion es true
         httpOnly: true, // Buena práctica de seguridad
         sameSite: 'Lax'
-        // sameSite: 'lax' // Puedes comentar esto también para descartar
     }
 }));
 
@@ -67,8 +64,8 @@ app.use(passport.session());
 app.use (morgan('dev')); 
 
 app.use ('/' ,require('./routes/auth'));
-// varibales globales la primera sera una variable que almacene el nombre de la aplicacion 
 
+// varibales globales la primera sera una variable que almacene el nombre de la aplicacion 
 app.use ((req, res, next)=>{
     res.locals.success = req.flash('success');
     res.locals.message = req.flash('message');
@@ -93,8 +90,8 @@ app.use (require('./routes/correo'));
 //public  , aqui se va a colocar todo lo que el navegador puede acceder 
 app.use (express.static(path.join (__dirname, 'public')));
 
-// starting the server, una seccion para iniciar el servidor, cuando se despliegue render lo colocara donde quiera si no en el puerto 3000
-const PORT = process.env.PORT || 3000; // <-- ¡ Usar el puerto que Render asigna o 3000 localmente.
+// starting the server, una seccion para iniciar el servidor.
+const PORT = process.env.PORT || 3000; 
 app.listen(PORT, () => { 
     console.log('servidor escuchando en el puerto', PORT); 
 });
