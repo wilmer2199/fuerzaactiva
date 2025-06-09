@@ -19,9 +19,9 @@ helpers.matchPassword = async(contrasena, savedPassword) =>{
 
 // este es pra hashear contraseñas 
 //async function hashAdminPassword() {
-    //const salt = await bcrypt.genSalt(10);
-   // const hashedPassword = await bcrypt.hash('Wilmeradmin', salt);
-    //console.log('Contraseña Hasheada para Wilmeradmin:', hashedPassword);
+   // const salt = await bcrypt.genSalt(10);
+   // const hashedPassword = await bcrypt.hash('wilmeradmin', salt);
+   // console.log('Contraseña Hasheada para wilmeradmin:', hashedPassword);
 //}
     //hashAdminPassword();
 

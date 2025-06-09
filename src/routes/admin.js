@@ -1,6 +1,9 @@
 const express = require('express');
 const router = express.Router();
 
+
+
+
 const handlebars = require ('../lib/handlebars');
 const pool = require('../database'); 
 const { isLoggedIn, isAdmin } = require('../lib/auth'); // Importar los middlewares
@@ -67,12 +70,15 @@ router.get('/clientes/delete/:id', isLoggedIn, isAdmin, async (req, res) => {
         // Y si el cliente tiene una entrada en la tabla 'inicio' (inicio_id),
         // es más complicado si otros clientes o admins usan la misma entrada de 'inicio'.
         // Por ahora, asumiremos que solo se elimina el registro de la tabla 'Clientes'.
-
-        await pool.query('DELETE FROM Clientes WHERE id = ?', [id]);
+        console.log(`-----> INTENTANDO ELIMINAR CLIENTE CON ID: ${id} <-----`);
+        const result = await pool.query('DELETE FROM Clientes WHERE id = ?', [id]);
+        console.log("-----> RESULTADO DE LA ELIMINACIÓN DEL CLIENTE <-----:", result);
+        
         req.flash('success', 'Cliente eliminado exitosamente.');
         req.session.save(() => {
             res.redirect('/admin/clientes'); // Redirigir de nuevo a la lista de clientes
         });
+
     } catch (err) {
         console.error("-----> ERROR AL ELIMINAR CLIENTE <-----:", err);
         req.flash('message', 'Error al eliminar el cliente.');
@@ -81,7 +87,6 @@ router.get('/clientes/delete/:id', isLoggedIn, isAdmin, async (req, res) => {
         });
     }
 });
-
 
 
 
@@ -130,7 +135,7 @@ router.get('/solicitudes', isLoggedIn, isAdmin, async (req, res) => {
 router.get('/solicitudes/delete/:id', isLoggedIn, isAdmin, async (req, res) => {
     const { id } = req.params;
     try {
-        await pool.query('DELETE FROM Servicios WHERE id = ?', [id]);
+        const result = await pool.query('DELETE FROM Servicios WHERE id = ?', [id]);
         req.flash('success', 'Solicitud eliminada exitosamente.');
         req.session.save(() => {
             res.redirect('/admin/solicitudes'); // Redirigir de nuevo a la lista de solicitudes

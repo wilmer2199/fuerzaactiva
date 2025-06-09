@@ -14,7 +14,7 @@ passport.use('local.signin', new LocalStrategy({
     console.log(req.body);
     const rows = await pool.query('SELECT * FROM inicio WHERE nombre_usuario = ?', [nombre_usuario]);
     if (rows.length > 0) {
-        const user = rows[0];
+        const user = rows[0] ;
         const validPassword = await helpers.matchPassword(contrasena, user.contrasena);
         if (validPassword) {
             

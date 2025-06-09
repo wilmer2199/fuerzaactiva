@@ -7,6 +7,8 @@ const {database} = require('./keys') // Esto importa los objeto { host: '...', u
 
 const pool = mysql.createPool (database);
 
+// Prueba de conexión al inicio de la aplicación
+
 pool.getConnection((err, connection) => {
     if (err) {
         if (err.code === 'PROTOCOL_CONNECTION_LOST'){

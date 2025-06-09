@@ -25,9 +25,12 @@ ADD COLUMN reset_password_expires BIGINT NULL;
 --un timestamp (número de milisegundos desde la época Unix). Esto es para que el token no sea válido para siempre.
 
     -- esto es para hashear la contraseña de wilmer admin 
+    INSERT INTO inicio (nombre_usuario, contrasena, nombre_completo, correo, rol)
+    VALUES ('wilmeradmin', 'wilmeradmin', 'Wilmer Administrador', 'pzeus2987@gmail.com', 'Admin');
+
     UPDATE inicio
-    SET contrasena = '$2b$10$Db1CTVabY4zWXMIcaPBILuNdFa0zmSO.QEy13P0KTpimEZdSx4aTe'
-    WHERE id = 4; WHERE nombre_usuario = 'Wilmeradmin';
+    SET contrasena = '$2b$10$D3AGUDp2shl6/5VN8nWj8uoML87KGfr0J3I.6M5eW1q7rjMFNOTZS'
+    WHERE id = 2; WHERE nombre_usuario = 'wilmeradmin';
 
     ALTER TABLE inicio
     DROP COLUMN fecha; --se borro la columna fecha de la tabla inicio
@@ -132,4 +135,46 @@ ON DELETE CASCADE;
 --tu base de datos MySQL te dará un error de clave foránea (Cannot delete or update a parent row: a foreign key constraint fails). 
 --Para evitar esto, tendrías que eliminar manualmente todos los servicios relacionados ANTES de eliminar el cliente.
 
+-- despuesa de tantas modificaciones mis tablas quedaron asi: 
+CREATE TABLE inicio (
+  id int primary key  AUTO_INCREMENT NOT NULL,
+  nombre_usuario varchar(100) NOT NULL,
+  contrasena varchar(200) NOT NULL,
+  nombre_completo varchar(100) NOT NULL,
+  rol enum('Cliente','Admin') NOT NULL DEFAULT 'Cliente',
+  reset_password_token varchar(255) DEFAULT NULL,
+  reset_password_expires bigint DEFAULT NULL,
+  correo varchar(100) NOT NULL);
 
+  CREATE TABLE clientes (
+  id int primary key  AUTO_INCREMENT NOT NULL,
+  inicio_id int DEFAULT NULL,
+  tipo_cliente varchar(150) NOT NULL,
+  nombre_contacto varchar(150) NOT NULL,
+  nombre_empresa varchar(150) DEFAULT NULL,
+  cedula_rif varchar (20) unique DEFAULT NULL,
+  email_contacto varchar (100) NOT NULL,
+  telefono_contacto varchar(20) DEFAULT NULL,
+  direccion_principal varchar(255) DEFAULT NULL,
+  origen_cliente varchar(100) DEFAULT NULL,
+  descripcion text,
+  fecha_registro timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  numero_registro varchar(40) NOT NULL,
+  CONSTRAINT FK_inicio FOREIGN KEY (inicio_id) REFERENCES inicio (id));
+
+  CREATE TABLE servicios (
+  id int primary key AUTO_INCREMENT NOT NULL,
+  cliente_id int DEFAULT NULL,
+  tipo_servicio varchar(100) NOT NULL,
+  fecha_solicitud timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  fecha_requerida date NOT NULL,
+  numero_oficiales_requeridos varchar(150) DEFAULT NULL,
+  duracion_estimada_horas varchar(100) DEFAULT NULL,
+  direccion_servicio varchar(255) NOT NULL,
+  detalles_adicionales text,
+  descripcion text,
+  inicio_id int DEFAULT NULL,
+  edad_oficiales_requeridos varchar(150) DEFAULT NULL,
+  nombre_cliente varchar(80) NOT NULL,
+  numero_registro varchar(40) NOT NULL,
+  CONSTRAINT fk_servicios_clientes FOREIGN KEY (cliente_id) REFERENCES clientes (id) ON DELETE CASCADE);
