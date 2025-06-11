@@ -14,6 +14,7 @@ const router = require('./routes/auth');
 
 
 
+
 // inicializacion del sistema 
 const app = express ();
 require ('./lib/passport');
