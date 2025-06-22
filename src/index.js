@@ -79,7 +79,7 @@ app.use ((req, res, next)=>{
 
 
 app.use ('/admin', require ('./routes/admin'));
-app.use ('/links1', require ('./routes/servicios'));
+app.use ('/links1', require ('./routes/solicitud'));
 app.use ('/links', require('./routes/clientes'));
 app.use ( require ('./routes/index'));
 

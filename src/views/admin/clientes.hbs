@@ -6,7 +6,7 @@
             <a href="/admin/clientes/download-pdf" class="btn btn-outline-info text-dark mb-3" target="_blank">
                 <i class="fas fa-file-pdf"></i> Descargar Reporte de Clientes (PDF)
             </a>
-            {{#if clientes.length}}
+            {{#if Clientes.length}}
             <div class="table-responsive">
                 <table class="table table-bordered table-hover">
                     <thead class="thead-dark">
@@ -26,7 +26,7 @@
                             <th>Acciones</th> </tr>
                     </thead>
                     <tbody>
-                        {{#each clientes}}
+                        {{#each Clientes}}
                         <tr>
                             <td>{{numero_registro}}</td>
                             <td>{{tipo_cliente}}</td>
@@ -41,7 +41,7 @@
                             <td>{{nombre_usuario}} ({{usuario_creador_nombre}})</td>
                             <td>{{formatDate fecha_registro 'DD [de] MMMM [de] YYYY HH:mm'}} <p>Registrado: {{momentFromNow fecha_registro}}</p> </td>
                             <td>
-                                <a href="/admin/clientes/delete/{{cliente_id}}" class="btn btn-outline-danger btn-sm"
+                                <a href="/admin/clientes/delete/{{registro_cliente_id}}" class="btn btn-outline-danger btn-sm"
                                    onclick="return confirm('¿Estás seguro de que quieres eliminar este cliente?');">
                                     Eliminar
                                 </a>

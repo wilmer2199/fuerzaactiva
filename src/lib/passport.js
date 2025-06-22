@@ -122,7 +122,7 @@ passport.deserializeUser(async (idAndRol, done) => {
 
         // 2. Si el rol es 'Cliente', busca su ID correspondiente en la tabla 'Clientes'
         if (inicioUser.rol === 'Cliente') {
-            const clienteRows = await pool.query('SELECT id FROM Clientes WHERE inicio_id = ?', [inicioUser.id]);
+            const clienteRows = await pool.query('SELECT id FROM registro_cliente WHERE inicio_id = ?', [inicioUser.id]);
             if (clienteRows.length === 0) {        
             } else {
                 clienteId = clienteRows[0].id; // ¡Este es el ID de la tabla Clientes que necesitamos!
@@ -136,7 +136,7 @@ passport.deserializeUser(async (idAndRol, done) => {
             id: inicioUser.id, // ID de la tabla 'inicio' (ID de autenticación)
             nombre_usuario: inicioUser.nombre_usuario,
             rol: inicioUser.rol,
-            cliente_id: clienteId // ID de la tabla 'Clientes' (será null si es Admin o si no se encontró)
+            cliente_id: clienteId // ID de la tabla 'registro_Cliente' (será null si es Admin o si no se encontró)
         };
 
         console.log('Deserialized User Object:', fullUserObject);

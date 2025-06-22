@@ -8,51 +8,51 @@
                 <div class="card-body">
                     <p class="h5 text-center my-1 mr-4 mb-2 p-2 justify-content-center align-items-center"> !Corrige tus datos¡ </p>
                     <hr class="my-2">
-                    <form action="/links/edit/id/{{cliente.id}}" method="post">
+                    <form action="/links/edit/id/{{registro_cliente.id}}" method="post">
                     
                     <div class="form-group row" > 
                         <div class= "col-md-12 mb-2">
                         <strong>N° de Registro:</strong>
-                        <input type="text" value="{{cliente.numero_registro}}" class="form-control form-control-sm" name="numero_registro" placeholder="Registro numero 1..." autofocus>
+                        <input type="text" value="{{registro_cliente.numero_registro}}" class="form-control form-control-sm" name="numero_registro" placeholder="Registro numero 1..." autofocus>
                     </div>
                     </div>
 
                     <div class="form-group row" > 
                         <div class= "col-md-12 mb-2">
                         <strong>C. (Particular/Empresa):</strong>
-                        <input type="text" value= "{{cliente.tipo_cliente}}" class="form-control form-control-sm"   name="tipo_cliente" placeholder="Cliente Particular o Empresa" autofocus>
+                        <input type="text" value= "{{registro_cliente.tipo_cliente}}" class="form-control form-control-sm"   name="tipo_cliente" placeholder="Cliente Particular o Empresa" autofocus>
                     </div>
                     </div> 
 
                     <div class="form-group row">
                         <div class="col-md-12 mb-2">
                         <strong>Nombres y Apellidos:</strong>
-                        <input type="text" value= "{{cliente.nombre_contacto}}" class="form-control form-control-sm" name="nombre_contacto" placeholder="Wilmer Antonio Perez Rojas" autofocus>
+                        <input type="text" value= "{{registro_cliente.nombre_contacto}}" class="form-control form-control-sm" name="nombre_contacto" placeholder="Wilmer Antonio Perez Rojas" autofocus>
                     </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-md-12 mb-2">
                         <strong>Empresa (Nombre):</strong>
-                        <input type="text" value= "{{cliente.nombre_empresa}}" class="form-control form-control-sm" name="nombre_empresa" placeholder="Empresa C.A." autofocus>
+                        <input type="text" value= "{{registro_cliente.nombre_empresa}}" class="form-control form-control-sm" name="nombre_empresa" placeholder="Empresa C.A." autofocus>
 
                     </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-md-12 mb-2">
                         <strong>Cédula/Rif:</strong>
-                        <input type="text" value= "{{cliente.cedula_rif}}" class="form-control form-control-sm " name="cedula_rif" placeholder="V-26.821.179 Ó j-41043916-5" autofocus>
+                        <input type="text" value= "{{registro_cliente.cedula_rif}}" class="form-control form-control-sm " name="cedula_rif" placeholder="V-26.821.179 Ó j-41043916-5" autofocus>
                     </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-md-12 mb-2">
                         <strong> Correo:</strong>
-                        <input type="text" value= "{{cliente.email_contacto}}" class="form-control form-control-sm " name="email_contacto" placeholder="123@gmail.com " autofocus>
+                        <input type="text" value= "{{registro_cliente.email_contacto}}" class="form-control form-control-sm " name="email_contacto" placeholder="123@gmail.com " autofocus>
                     </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-md-12 mb-2">
                         <strong> Telefono:</strong>
-                        <input type="text" value= "{{cliente.telefono_contacto}}" class="form-control form-control-sm " name="telefono_contacto" placeholder="+58414-9513574 " autofocus>
+                        <input type="text" value= "{{registro_cliente.telefono_contacto}}" class="form-control form-control-sm " name="telefono_contacto" placeholder="+58414-9513574 " autofocus>
                     </div>
                     </div>
 
@@ -61,28 +61,28 @@
                     <div class="form-group row">
                         <div class="col-md-12 mb-2">
                         <strong> Dirección:</strong>
-                        <textarea  type="text"     name="direccion_principal" rows= "2" class="form-control form-control-sm"  placeholder="Dirección" autofocus>"{{cliente.direccion_principal}}"</textarea>
+                        <textarea  type="text"     name="direccion_principal" rows= "2" class="form-control form-control-sm"  placeholder="Dirección" autofocus>"{{registro_cliente.direccion_principal}}"</textarea>
                     </div>
                     </div>
 
                     <div class="form-group row">
                         <div class="col-md-12 mb-2">
                         <strong> ¿Cómo nos Conoció?:</strong>
-                        <input type="text" value= "{{cliente.origen_cliente}}" class="form-control form-control-sm " name="origen_cliente" placeholder="Instagram, WhatsApp " autofocus>
+                        <input type="text" value= "{{registro_cliente.origen_cliente}}" class="form-control form-control-sm " name="origen_cliente" placeholder="Instagram, WhatsApp " autofocus>
                     </div>
                     </div>
                     
                     <div class="form-group row">
                         <div class="col-md-12 mb-2">
                         <strong>Descripción:</strong>
-                        <textarea  type="text"     name="descripcion" rows= "2" class="form-control form-control-sm"  placeholder="!Estoy interesa en el servicio¡, etc.." autofocus>"{{cliente.descripcion}}"</textarea>
+                        <textarea  type="text"     name="descripcion" rows= "2" class="form-control form-control-sm"  placeholder="!Estoy interesa en el servicio¡, etc.." autofocus>"{{registro_cliente.descripcion}}"</textarea>
                     </div>
                     </div>
 
                     <div class="form-group row">
                         <div class="col-md-12 mb-2">
                         <strong class="my-1 mr-4 mb-0"> Fecha Registro </strong>
-                        <input type="date"  class="form-control form-control-sm" name= "fecha_registro"  placeholder= "Fecha registro " autofocus> "{{formatDate cliente.fecha_registro 'DD [de] MMMM [de] YYYY HH:mm'}}" </input>
+                        <input type="date"  class="form-control form-control-sm" name= "fecha_registro"  placeholder= "Fecha registro " autofocus> "{{formatDate registro_cliente.fecha_registro 'DD [de] MMMM [de] YYYY HH:mm'}}" </input>
                     </div>
                     </div>
                     

@@ -17,9 +17,9 @@ const PDFDocument = require('pdfkit'); //para extraer el pdf
 router.get('/clientes', isLoggedIn, isAdmin, async (req, res) => { // Aseguararse de que isAdmin esté de vuelta
     try {
         console.log("-----> INICIO DE CONSULTA DE CLIENTES <-----"); 
-        const clientes = await pool.query(`
+        const Clientes = await pool.query(`
             SELECT
-                c.id AS cliente_id,
+                c.id AS registro_cliente_id,
                 c.numero_registro,
                 c.tipo_cliente,
                 c.nombre_contacto,
@@ -34,7 +34,7 @@ router.get('/clientes', isLoggedIn, isAdmin, async (req, res) => { // Aseguarars
                 i.nombre_usuario,
                 i.nombre_completo AS usuario_creador_nombre
             FROM
-                Clientes c
+                registro_cliente c
             LEFT JOIN
                 inicio i ON c.inicio_id = i.id
             ORDER BY
@@ -42,13 +42,13 @@ router.get('/clientes', isLoggedIn, isAdmin, async (req, res) => { // Aseguarars
         `);
 
         console.log("-----> FIN DE CONSULTA DE CLIENTES <-----"); // ESTE DEBE APARECER
-        console.log("Tipo de 'clientes' recibido:", typeof clientes);
-        console.log("¿'clientes' es un arreglo?", Array.isArray(clientes));
-        console.log("Contenido de 'clientes':", clientes); // ¡ESTE ES EL MÁS IMPORTANTE!
-        console.log("Número de clientes:", clientes.length);
+        console.log("Tipo de 'clientes' recibido:", typeof Clientes);
+        console.log("¿'clientes' es un arreglo?", Array.isArray(Clientes));
+        console.log("Contenido de 'clientes':", Clientes); // ¡ESTE ES EL MÁS IMPORTANTE!
+        console.log("Número de clientes:", Clientes.length);
 
 
-        res.render('admin/clientes', { clientes });
+        res.render('admin/clientes', {Clientes});
     } catch (err) {
         console.error("-----> ERROR EN RUTA /admin/clientes <-----:", err); // SI HAY UN ERROR AQUÍ, SE VERA
         req.flash('message', 'Error al cargar la lista de clientes.');
@@ -65,9 +65,9 @@ router.get('/clientes/download-pdf', isLoggedIn, isAdmin, async (req, res) => {
     try {
         console.log("-----> INICIO DE GENERACIÓN DE PDF DE CLIENTES <-----");
 
-        const clientes = await pool.query(`
+        const Cliente = await pool.query(`
             SELECT
-                c.id AS cliente_id,
+                c.id AS registro_cliente_id,
                 c.numero_registro,
                 c.tipo_cliente,
                 c.nombre_contacto,
@@ -82,7 +82,7 @@ router.get('/clientes/download-pdf', isLoggedIn, isAdmin, async (req, res) => {
                 i.nombre_usuario,
                 i.nombre_completo AS usuario_creador_nombre
             FROM
-                Clientes c
+                registro_cliente c
             LEFT JOIN
                 inicio i ON c.inicio_id = i.id
             ORDER BY
@@ -188,7 +188,7 @@ router.get('/clientes/download-pdf', isLoggedIn, isAdmin, async (req, res) => {
         currentY = generateHeader(currentY);
 
         // Dibuja las filas de datos para clientes
-        clientes.forEach(cliente => {
+        Cliente.forEach(cliente => {
             const requiredRowHeight = calculateRowHeight(cliente, false);
 
             if (currentY + requiredRowHeight > doc.page.height - doc.page.margins.bottom) {
@@ -230,7 +230,7 @@ router.get('/clientes/delete/:id', isLoggedIn, isAdmin, async (req, res) => {
         // es más complicado si otros clientes o admins usan la misma entrada de 'inicio'.
         // Por ahora, asumiremos que solo se elimina el registro de la tabla 'Clientes'.
         console.log(`-----> INTENTANDO ELIMINAR CLIENTE CON ID: ${id} <-----`);
-        const result = await pool.query('DELETE FROM Clientes WHERE id = ?', [id]);
+        const result = await pool.query('DELETE FROM registro_cliente WHERE id = ?', [id]);
         console.log("-----> RESULTADO DE LA ELIMINACIÓN DEL CLIENTE <-----:", result);
         
         req.flash('success', 'Cliente eliminado exitosamente.');
@@ -255,7 +255,7 @@ router.get('/solicitudes', isLoggedIn, isAdmin, async (req, res) => {
         console.log("-----> INICIO DE CONSULTA DE SOLICITUDES <-----");
         const solicitudes = await pool.query(`
             SELECT
-                s.id AS servicio_id,
+                s.id AS registro_solicitud_id,
                 s.numero_registro,
                 s.nombre_cliente,
                 s.tipo_servicio,
@@ -270,7 +270,7 @@ router.get('/solicitudes', isLoggedIn, isAdmin, async (req, res) => {
                 i.nombre_usuario,
                 i.nombre_completo AS usuario_solicitante_nombre
             FROM
-                Servicios s
+                registro_solicitud s
             JOIN
                 inicio i ON s.inicio_id = i.id
             ORDER BY
@@ -300,7 +300,7 @@ router.get('/solicitudes/download-pdf', isLoggedIn, isAdmin, async (req, res) =>
 
         const solicitudes = await pool.query(`
             SELECT
-                s.id AS servicio_id,
+                s.id AS registro_solicitud_id,
                 s.numero_registro,
                 s.nombre_cliente,
                 s.tipo_servicio,
@@ -315,7 +315,7 @@ router.get('/solicitudes/download-pdf', isLoggedIn, isAdmin, async (req, res) =>
                 i.nombre_usuario,
                 i.nombre_completo AS usuario_solicitante_nombre
             FROM
-                Servicios s
+                registro_solicitud s
             JOIN
                 inicio i ON s.inicio_id = i.id
             ORDER BY
@@ -447,7 +447,7 @@ router.get('/solicitudes/download-pdf', isLoggedIn, isAdmin, async (req, res) =>
 router.get('/solicitudes/delete/:id', isLoggedIn, isAdmin, async (req, res) => {
     const { id } = req.params;
     try {
-        const result = await pool.query('DELETE FROM Servicios WHERE id = ?', [id]);
+        const result = await pool.query('DELETE FROM registro_solicitud WHERE id = ?', [id]);
         req.flash('success', 'Solicitud eliminada exitosamente.');
         req.session.save(() => {
             res.redirect('/admin/solicitudes'); // Redirigir de nuevo a la lista de solicitudes

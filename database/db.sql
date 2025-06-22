@@ -146,7 +146,7 @@ CREATE TABLE inicio (
   reset_password_expires bigint DEFAULT NULL,
   correo varchar(100) NOT NULL);
 
-  CREATE TABLE clientes (
+  CREATE TABLE registro_cliente (
   id int primary key  AUTO_INCREMENT NOT NULL,
   inicio_id int DEFAULT NULL,
   tipo_cliente varchar(150) NOT NULL,
@@ -162,7 +162,9 @@ CREATE TABLE inicio (
   numero_registro varchar(40) NOT NULL,
   CONSTRAINT FK_inicio FOREIGN KEY (inicio_id) REFERENCES inicio (id));
 
-  CREATE TABLE servicios (
+  RENAME TABLE clientes TO registro_cliente; --cambie el nombre de clientes a registro_cliente
+
+  CREATE TABLE registro_solicitud (
   id int primary key AUTO_INCREMENT NOT NULL,
   cliente_id int DEFAULT NULL,
   tipo_servicio varchar(100) NOT NULL,
@@ -178,3 +180,6 @@ CREATE TABLE inicio (
   nombre_cliente varchar(80) NOT NULL,
   numero_registro varchar(40) NOT NULL,
   CONSTRAINT fk_servicios_clientes FOREIGN KEY (cliente_id) REFERENCES clientes (id) ON DELETE CASCADE);
+
+RENAME TABLE servicios TO solicitud; --cambie el nombre de servicios a solicitud
+RENAME TABLE solicitud TO registro_solicitud; -- cambie el nombre se solicitud a registro_solicitud

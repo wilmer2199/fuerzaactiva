@@ -13,7 +13,7 @@ router.get ('/add1', isLoggedIn, (req, res) => {
 
 router.post('/add1', isLoggedIn, async(req, res) =>{
     const {numero_registro,nombre_cliente,tipo_servicio, fecha_solicitud, fecha_requerida,numero_oficiales_requeridos, edad_oficiales_requeridos, duracion_estimada_horas, direccion_servicio, detalles_adicionales, descripcion } = req.body;
-    const newServicio = {
+    const newRegistro_solicitud = {
         numero_registro,
         nombre_cliente,
         tipo_servicio,
@@ -28,19 +28,19 @@ router.post('/add1', isLoggedIn, async(req, res) =>{
         inicio_id: req.user.id //este es para enlazar una tarea con un usuario, para que la sesion sea individual
 
     } ;
-    await pool.query ('INSERT INTO servicios set?', [newServicio]);
+    await pool.query ('INSERT INTO registro_solicitud set?', [newRegistro_solicitud]);
     req.flash('success', 'Solicitud registrada exitosamente');
     res.redirect ('/links1');
 });
 
 router.get('//', isLoggedIn, async (req, res) => {
-    const servicios= await pool.query('SELECT * FROM servicios WHERE inicio_id =?', [req.user.id]);
-    res.render ('links1/lits1', {servicios});
+    const registro_solicitud= await pool.query('SELECT * FROM registro_solicitud WHERE inicio_id =?', [req.user.id]);
+    res.render ('links1/lits1', {registro_solicitud});
 }); 
 
 router.get ('/delete1/id/:id', isLoggedIn, async (req, res) => {
     const {id} = req.params; 
-    await pool.query ('DELETE FROM servicios WHERE ID = ?', [id]);
+    await pool.query ('DELETE FROM registro_solicitud WHERE ID = ?', [id]);
     req.flash('success', 'solicitud eliminada exitosamente');
     res.redirect('/links1');
     
@@ -48,15 +48,15 @@ router.get ('/delete1/id/:id', isLoggedIn, async (req, res) => {
 
 router.get('/edit1/id/:id', isLoggedIn, async (req, res) =>{
     const {id} = req.params;
-    const servicios = await pool.query ('SELECT * FROM servicios WHERE ID = ?', [id]);
-    res.render ('links1/edit1', {servicio:servicios [0]});
+    const registro_solicitudes = await pool.query ('SELECT * FROM registro_solicitud WHERE ID = ?', [id]);
+    res.render ('links1/edit1', {registro_solicitud:registro_solicitudes [0]});
 
 });
 
 router.post ('/edit1/id/:id', isLoggedIn, async (req, res) =>{
     const { id } = req.params;
     const {numero_registro, nombre_cliente, tipo_servicio, fecha_solicitud, fecha_requerida,numero_oficiales_requeridos, edad_oficiales_requeridos, duracion_estimada_horas, direccion_servicio, detalles_adicionales, descripcion} = req.body;
-    const newServicio = {
+    const newRegistro_solicitud = {
         numero_registro,
         nombre_cliente,
         tipo_servicio,
@@ -72,7 +72,7 @@ router.post ('/edit1/id/:id', isLoggedIn, async (req, res) =>{
 
     } ;
 
-    await pool.query('UPDATE servicios set ? WHERE id =?', [newServicio, id]);
+    await pool.query('UPDATE registro_solicitud set ? WHERE id =?', [newRegistro_solicitud, id]);
     req.flash('success', 'solicitud actualizada exitosamente');
     res.redirect ('/links1');
 });
