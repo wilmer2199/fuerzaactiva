@@ -1,60 +1,100 @@
-<div class="background-contactanos"> <div class="container  p-4">
-    <div class="row my-4">
-        <div class="  col-md-4 align-items-stretch mx-auto"> 
-            <div class="card shadow">
-                <div class="card-header bg-info text-white">
-                    <h3 class="card-title my-2 text-center">Contactanos</h4>
-                </div>
+<div class="background-contactanos">
+    <div class="container p-4">
+        <div class="row my-4">
+            <div class="col-md-4 align-items-stretch mx-auto">
+                <div class="card shadow">
+                    <div class="card-header bg-info text-white">
+                        <h3 class="card-title my-2 text-center">Contactanos</h3>
+                    </div>
 
-                <div class="card-body">
-                    <p class="h5 text-center my-1 mr-4 mb-2 p-2 justify-content-center align-items-center"> ¡Deja tu solicitud y en breve le contactaremos! </p>
-                    <hr class="my-2">
-                    <form action="/contacto" method="post">    
+                    <div class="card-body">
+                        <p class="h5 text-center my-1 mr-4 mb-2 p-2 justify-content-center align-items-center">¡Deja tu solicitud y en breve le contactaremos!</p>
+                        <hr class="my-2">
+                        <form id="contactForm" action="/contacto" method="post">
 
-                    <div class="form-group row" > 
-                        <div class= "col-md-12 mb-2">
-                        <strong>Nombre y Apellido:</strong>
-                        <input type="text" class="form-control form-control-sm"   name="nombre" placeholder="Wilmer Perez" autofocus>
+                            <div class="form-group row">
+                                <div class="col-md-12 mb-2">
+                                    <strong>Nombre y Apellido:</strong>
+                                    <input type="text" class="form-control form-control-sm" id="nombre" name="nombre" placeholder="Wilmer Perez" autofocus required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-12 mb-2">
+                                    <strong>Correo:</strong>
+                                    <input type="email" class="form-control form-control-sm" id="correoCliente" name="correoCliente" placeholder="123@gmail.com"  required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-12 mb-2">
+                                    <strong>Telefono:</strong>
+                                    <input type="text" class="form-control form-control-sm" id="telefono" name="telefono" placeholder="+58414-9513574"  required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-12 mb-2">
+                                    <strong class="my-1 mr-4 mb-0"> Fecha de Solicitud</strong>
+                                    <input type="date" class="form-control form-control-sm" id="fecha_solicitud" name="fecha_solicitud" placeholder="Fecha Solicitud" required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-12 mb-2">
+                                    <strong class="my-1 mr-4 mb-0"> Fecha Requerida</strong>
+                                    <input type="date" class="form-control form-control-sm" id="fecha_requerida" name="fecha_requerida" placeholder="Fecha Requerida" required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-12 mb-2">
+                                    <strong>Descripción:</strong>
+                                    <textarea name="descripcion" id="descripcion" rows="2" class="form-control form-control-sm" placeholder="Ya realice el registro de mi solicitud, espero su popuesta." required></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <button type="submit" class=" btn btn-outline-info btn-block col-md-12">
+                                    Enviar Solicitud
+                                </button>
+                            </div>
+                        </form>
                     </div>
-                    </div>
-                    <div class="form-group row" > 
-                        <div class= "col-md-12 mb-2">
-                        <strong>Correo:</strong>
-                        <input type="text" class="form-control form-control-sm"   name="correoCliente" placeholder="123@gmail.com" autofocus>
-                    </div>
-                    </div>
-                    <div class="form-group row" > 
-                        <div class= "col-md-12 mb-2">
-                        <strong>Telefono:</strong>
-                        <input type="text" class="form-control form-control-sm"   name="telefono" placeholder="+58414-9513574" autofocus>
-                    </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-md-12 mb-2">
-                        <strong class="my-1 mr-4 mb-0"> Fecha de Solicitud</strong>
-                        <input type="date" class="form-control form-control-sm" name="fecha_solicitud"  placeholder="Fecha Solicitud " > "{{formatDate servicio.fecha_registro 'DD [de] MMMM [de] YYYY HH:mm'}}" </input>
-                    </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-md-12 mb-2">
-                        <strong class="my-1 mr-4 mb-0"> Fecha Requerida</strong>
-                        <input type="date" class="form-control form-control-sm" name="fecha_requerida"  placeholder="Fecha Requerida " > "{{formatDate servicio.fecha_requerida 'DD [de] MMMM [de] YYYY HH:mm'}}" </input>
-                    </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-md-12 mb-2">
-                         <strong>Descripción:</strong>
-                        <textarea  type= "text "name="descripcion" rows= "2" class="form-control form-control-sm"  placeholder="Ya realice el registro de mi solicitud, espero su popuesta. "></textarea>
-                    </div>
-                    </div> 
-                    <div class="form-group row">
-                        <button class=" btn btn-outline-info btn-block col-md-12">
-                            Enviar Solicitud
-                        </button>
-                    </div>
-                    </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Seleccionamos el formulario por su nuevo ID
+        const form = document.getElementById('contactForm');
+
+        form.addEventListener('submit', function(event) {
+            // Definimos los campos obligatorios y sus nombres para el mensaje
+            const camposObligatorios = {
+                nombre: 'Nombre y Apellido',
+                correoCliente: 'Correo',
+                telefono: 'Telefono',
+                fecha_solicitud: 'Fecha de Solicitud',
+                fecha_requerida: 'Fecha Requerida',
+                descripcion: 'Descripción'
+            };
+
+            let campoVacioEncontrado = false;
+            let campoFaltante = '';
+
+            for (const id in camposObligatorios) {
+                const input = document.getElementById(id);
+
+                if (input && input.value.trim() === '') {
+                    campoVacioEncontrado = true;
+                    campoFaltante = camposObligatorios[id];
+                    input.focus();
+                    break;
+                }
+            }
+
+            if (campoVacioEncontrado) {
+                event.preventDefault();
+                alert('Falta completar el campo: ' + campoFaltante);
+            }
+        });
+    });
+</script>

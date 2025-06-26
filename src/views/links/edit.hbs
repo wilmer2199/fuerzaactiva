@@ -1,100 +1,143 @@
-<div class="background-register"> <div class="container  p-4">
-    <div class="row my-4">
-        <div class="  col-md-4 align-items-stretch mx-auto"> 
-            <div class="card shadow">
-                <div class="card-header bg-primary text-white">
-                    <h3 class="card-title  my-2 text-center">Registro de Cliente</h3>
-                </div>
-                <div class="card-body">
-                    <p class="h5 text-center my-1 mr-4 mb-2 p-2 justify-content-center align-items-center"> !Corrige tus datos¡ </p>
-                    <hr class="my-2">
-                    <form action="/links/edit/id/{{registro_cliente.id}}" method="post">
-                    
-                    <div class="form-group row" > 
-                        <div class= "col-md-12 mb-2">
-                        <strong>N° de Registro:</strong>
-                        <input type="text" value="{{registro_cliente.numero_registro}}" class="form-control form-control-sm" name="numero_registro" placeholder="Registro numero 1..." autofocus>
+<div class="background-register">
+    <div class="container p-4">
+        <div class="row my-4">
+            <div class="col-md-4 align-items-stretch mx-auto">
+                <div class="card shadow">
+                    <div class="card-header bg-primary text-white">
+                        <h3 class="card-title my-2 text-center">Registro de Cliente</h3>
                     </div>
-                    </div>
+                    <div class="card-body">
+                        <p class="h5 text-center my-1 mr-4 mb-2 p-2 justify-content-center align-items-center">!Corrige tus datos¡</p>
+                        <hr class="my-2">
+                        <form id="editForm" action="/links/edit/id/{{registro_cliente.id}}" method="post">
 
-                    <div class="form-group row" > 
-                        <div class= "col-md-12 mb-2">
-                        <strong>C. (Particular/Empresa):</strong>
-                        <input type="text" value= "{{registro_cliente.tipo_cliente}}" class="form-control form-control-sm"   name="tipo_cliente" placeholder="Cliente Particular o Empresa" autofocus>
-                    </div>
-                    </div> 
+                            <div class="form-group row">
+                                <div class="col-md-12 mb-2">
+                                    <strong>N° de Registro:</strong>
+                                    <input type="text" value="{{registro_cliente.numero_registro}}" class="form-control form-control-sm" id="numero_registro" name="numero_registro" placeholder="Registro numero 1..." autofocus required>
+                                </div>
+                            </div>
 
-                    <div class="form-group row">
-                        <div class="col-md-12 mb-2">
-                        <strong>Nombres y Apellidos:</strong>
-                        <input type="text" value= "{{registro_cliente.nombre_contacto}}" class="form-control form-control-sm" name="nombre_contacto" placeholder="Wilmer Antonio Perez Rojas" autofocus>
-                    </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-md-12 mb-2">
-                        <strong>Empresa (Nombre):</strong>
-                        <input type="text" value= "{{registro_cliente.nombre_empresa}}" class="form-control form-control-sm" name="nombre_empresa" placeholder="Empresa C.A." autofocus>
+                            <div class="form-group row">
+                                <div class="col-md-12 mb-2">
+                                    <strong>C. (Particular/Empresa):</strong>
+                                    <input type="text" value="{{registro_cliente.tipo_cliente}}" class="form-control form-control-sm" id="tipo_cliente" name="tipo_cliente" placeholder="Cliente Particular o Empresa" required>
+                                </div>
+                            </div>
 
-                    </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-md-12 mb-2">
-                        <strong>Cédula/Rif:</strong>
-                        <input type="text" value= "{{registro_cliente.cedula_rif}}" class="form-control form-control-sm " name="cedula_rif" placeholder="V-26.821.179 Ó j-41043916-5" autofocus>
-                    </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-md-12 mb-2">
-                        <strong> Correo:</strong>
-                        <input type="text" value= "{{registro_cliente.email_contacto}}" class="form-control form-control-sm " name="email_contacto" placeholder="123@gmail.com " autofocus>
-                    </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-md-12 mb-2">
-                        <strong> Telefono:</strong>
-                        <input type="text" value= "{{registro_cliente.telefono_contacto}}" class="form-control form-control-sm " name="telefono_contacto" placeholder="+58414-9513574 " autofocus>
-                    </div>
-                    </div>
+                            <div class="form-group row">
+                                <div class="col-md-12 mb-2">
+                                    <strong>Nombres y Apellidos:</strong>
+                                    <input type="text" value="{{registro_cliente.nombre_contacto}}" class="form-control form-control-sm" id="nombre_contacto" name="nombre_contacto" placeholder="Wilmer Antonio Perez Rojas" autofocus required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-12 mb-2">
+                                    <strong>Empresa (Nombre):</strong>
+                                    <input type="text" value="{{registro_cliente.nombre_empresa}}" class="form-control form-control-sm" id="nombre_empresa" name="nombre_empresa" placeholder="Empresa C.A." autofocus>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-12 mb-2">
+                                    <strong>Cédula/Rif:</strong>
+                                    <input type="text" value="{{registro_cliente.cedula_rif}}" class="form-control form-control-sm" id="cedula_rif" name="cedula_rif" placeholder="V-26.821.179 Ó j-41043916-5" autofocus required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-12 mb-2">
+                                    <strong> Correo:</strong>
+                                    <input type="text" value="{{registro_cliente.email_contacto}}" class="form-control form-control-sm" id="email_contacto" name="email_contacto" placeholder="123@gmail.com" autofocus required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-12 mb-2">
+                                    <strong> Telefono:</strong>
+                                    <input type="text" value="{{registro_cliente.telefono_contacto}}" class="form-control form-control-sm" id="telefono_contacto" name="telefono_contacto" placeholder="+58414-9513574" autofocus required>
+                                </div>
+                            </div>
 
-                
-                    
-                    <div class="form-group row">
-                        <div class="col-md-12 mb-2">
-                        <strong> Dirección:</strong>
-                        <textarea  type="text"     name="direccion_principal" rows= "2" class="form-control form-control-sm"  placeholder="Dirección" autofocus>"{{registro_cliente.direccion_principal}}"</textarea>
-                    </div>
-                    </div>
+                            <div class="form-group row">
+                                <div class="col-md-12 mb-2">
+                                    <strong> Dirección:</strong>
+                                    <textarea type="text" name="direccion_principal" id="direccion_principal" rows="2" class="form-control form-control-sm" placeholder="Dirección" autofocus required>{{registro_cliente.direccion_principal}}</textarea>
+                                </div>
+                            </div>
 
-                    <div class="form-group row">
-                        <div class="col-md-12 mb-2">
-                        <strong> ¿Cómo nos Conoció?:</strong>
-                        <input type="text" value= "{{registro_cliente.origen_cliente}}" class="form-control form-control-sm " name="origen_cliente" placeholder="Instagram, WhatsApp " autofocus>
-                    </div>
-                    </div>
-                    
-                    <div class="form-group row">
-                        <div class="col-md-12 mb-2">
-                        <strong>Descripción:</strong>
-                        <textarea  type="text"     name="descripcion" rows= "2" class="form-control form-control-sm"  placeholder="!Estoy interesa en el servicio¡, etc.." autofocus>"{{registro_cliente.descripcion}}"</textarea>
-                    </div>
-                    </div>
+                            <div class="form-group row">
+                                <div class="col-md-12 mb-2">
+                                    <strong> ¿Cómo nos Conoció?:</strong>
+                                    <input type="text" value="{{registro_cliente.origen_cliente}}" class="form-control form-control-sm" name="origen_cliente" placeholder="Instagram, WhatsApp" autofocus>
+                                </div>
+                            </div>
 
-                    <div class="form-group row">
-                        <div class="col-md-12 mb-2">
-                        <strong class="my-1 mr-4 mb-0"> Fecha Registro </strong>
-                        <input type="date"  class="form-control form-control-sm" name= "fecha_registro"  placeholder= "Fecha registro " autofocus> "{{formatDate registro_cliente.fecha_registro 'DD [de] MMMM [de] YYYY HH:mm'}}" </input>
+                            <div class="form-group row">
+                                <div class="col-md-12 mb-2">
+                                    <strong>Descripción:</strong>
+                                    <textarea type="text" name="descripcion" rows="2" class="form-control form-control-sm" placeholder="!Estoy interesa en el servicio¡, etc.." autofocus>{{registro_cliente.descripcion}}</textarea>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <div class="col-md-12 mb-2">
+                                    <strong class="my-1 mr-4 mb-0"> Fecha Registro </strong>
+                                    <input type="date" value="{{formatDate registro_cliente.fecha_registro 'YYYY-MM-DD'}}" class="form-control form-control-sm" name="fecha_registro" id="fecha_registro" placeholder="Fecha registro" autofocus required> </input>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <button type="submit" class=" btn btn-outline-primary btn-block col-md-12">
+                                    Guardar
+                                </button>
+                            </div>
+
+                        </form>
                     </div>
-                    </div>
-                    
-                    <div class="form-group row">
-                        <button class=" btn btn-outline-primary btn-block col-md-12">
-                            Guardar
-                        </button>
-                    </div>
-                    
-                    </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Seleccionamos el formulario por su nuevo ID
+        const form = document.getElementById('editForm');
+
+        form.addEventListener('submit', function(event) {
+            // Definimos los campos obligatorios y sus nombres para el mensaje
+            const camposObligatorios = {
+                numero_registro: 'N° de Registro',
+                tipo_cliente: 'Tipo de Cliente (Particular/Empresa)',
+                nombre_contacto: 'Nombres y Apellidos',
+                cedula_rif: 'Cédula/Rif',
+                email_contacto: 'Correo',
+                telefono_contacto: 'Teléfono',
+                direccion_principal: 'Dirección',
+                fecha_registro: 'Fecha de Registro'
+            };
+
+            let campoVacioEncontrado = false;
+            let campoFaltante = '';
+
+            for (const id in camposObligatorios) {
+                const input = document.getElementById(id);
+                // Usamos .trim() para quitar espacios en blanco al inicio y final
+                // También verificamos si el input existe para evitar errores
+                if (input && input.value.trim() === '') {
+                    campoVacioEncontrado = true;
+                    campoFaltante = camposObligatorios[id];
+                    // Enfoca el campo para que el usuario sepa dónde debe escribir
+                    input.focus();
+                    break; // Salimos del bucle al encontrar el primer campo vacío
+                }
+            }
+
+            if (campoVacioEncontrado) {
+                // Previene que el formulario se envíe
+                event.preventDefault();
+                // Muestra el mensaje de alerta
+                alert('Falta completar el campo: ' + campoFaltante);
+            }
+        });
+    });
+</script>
